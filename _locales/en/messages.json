@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "AtCoder Clock",
+    "description": "The name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Displays an AtCoder-style digital clock on webpages.",
+    "description": "The description of the extension."
+  }
+}

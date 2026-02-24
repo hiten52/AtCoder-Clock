@@ -3,6 +3,7 @@
   "name": "AtCoder Clock",
   "version": "1.0",
   "description": "Displays an AtCoder-style digital clock on webpages.",
+  "default_locale": "en",
 
   "permissions": ["storage"],
 
