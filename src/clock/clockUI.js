@@ -21,6 +21,10 @@ export class ClockUI {
 
     }
 
+    host.addEventListener('click', (_) => {
+      this.toggleClockFading();
+    });
+
     return host;
   }
 
@@ -61,5 +65,13 @@ export class ClockUI {
 
   hide() {
     this.host.style.display = "none";
+  }
+
+  toggleClockFading() {
+    if(this.host.style.opacity === '0.1') {
+      this.host.style.opacity = '1';
+    } else {
+      this.host.style.opacity = '0.1';
+    }
   }
 }
