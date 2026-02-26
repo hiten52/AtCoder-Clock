@@ -8,6 +8,8 @@ class ClockController {
     this.start();
     this.initStorage();
     this.initMessages();
+
+    this.ui.bindEvent('click', this.ui.toggleClockFading);
   }
 
   start() {

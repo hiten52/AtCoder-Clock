@@ -74,4 +74,8 @@ export class ClockUI {
       this.host.style.opacity = '0.1';
     }
   }
+
+  bindEvent(event, fn) {
+    this.host.addEventListener(event, fn);
+  }
 }
