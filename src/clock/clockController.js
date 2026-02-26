@@ -1,15 +1,40 @@
 import { ClockUI } from "./clockUI.js";
-import { getClockString } from "./clockTime.js";
+import { getClockString, getTimerString } from "./clockTime.js";
+
+const CLOCK_TYPES = {
+  CLOCK: 'clock',
+  TIMER: 'timer'
+};
 
 class ClockController {
 
   constructor() {
     this.ui = new ClockUI();
-    this.start();
+   
+    this.clockType = CLOCK_TYPES.CLOCK;
+    this.timerInfo = {
+      currentTime: 0,
+      duration: 30 * 60
+    };
+   
+    this.initEvents();
     this.initStorage();
     this.initMessages();
 
-    this.ui.bindEvent('click', this.ui.toggleClockFading);
+    this.start();
+  }
+
+  initEvents() {
+    this.ui.bindEvent("click", () => this.ui.toggleClockFading());
+
+    this.ui.bindEvent("dblclick", () => {
+      this.clockType =
+        this.clockType === CLOCK_TYPES.CLOCK
+          ? CLOCK_TYPES.TIMER
+          : CLOCK_TYPES.CLOCK;
+
+      this.timerInfo.currentTime = 0;
+    });
   }
 
   start() {
@@ -18,7 +43,18 @@ class ClockController {
   }
 
   tick() {
-    this.ui.setText(getClockString());
+    if (this.clockType === CLOCK_TYPES.TIMER) {
+      if (this.timerInfo.currentTime < this.timerInfo.duration) {
+        this.timerInfo.currentTime++;
+      }
+    }
+
+    const text =
+      this.clockType === CLOCK_TYPES.CLOCK
+        ? getClockString()
+        : getTimerString(this.timerInfo);
+
+    this.ui.setText(text);
   }
 
   initStorage() {

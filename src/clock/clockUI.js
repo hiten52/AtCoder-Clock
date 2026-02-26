@@ -21,10 +21,6 @@ export class ClockUI {
 
     }
 
-    host.addEventListener('click', (_) => {
-      this.toggleClockFading();
-    });
-
     return host;
   }
 

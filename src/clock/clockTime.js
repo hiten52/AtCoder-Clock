@@ -20,3 +20,18 @@ export function getClockString() {
 
   return `${date}\n${time}`;
 }
+
+export function getTimerString(timer) {
+  const pad = (n) => String(n).padStart(2, "0");
+
+  if (timer.currentTime < timer.duration) {
+    const timeLeft = timer.duration - timer.currentTime;
+
+    const M = Math.floor(timeLeft / 60);
+    const S = timeLeft % 60;
+
+    return `Timer\n${pad(M)} : ${pad(S)}`;
+  }
+
+  return `Timer\n00 : 00`;
+}
